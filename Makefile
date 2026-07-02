@@ -33,11 +33,12 @@ export VERSION=1.16.5-dev
 
 KERNEL_INFO=src/common/kernel_info.s
 
-all: stm32f407 stm32f411 stm32l476 stm32f746 rp2040 rp2040_big rp2040_1core rp2040_1core_big rp2350 rp2350_16mib rp2350_1core rp2350_1core_16mib
+all: stm32f407 stm32f411 stm32f401r stm32l476 stm32f746 rp2040 rp2040_big rp2040_1core rp2040_1core_big rp2350 rp2350_16mib rp2350_1core rp2350_1core_16mib
 
 install:
 	$(MAKE) -C src/stm32f407 install
 	$(MAKE) -C src/stm32f411 install
+	$(MAKE) -C src/stm32f401r install
 	$(MAKE) -C src/stm32l476 install
 	$(MAKE) -C src/stm32f746 install
 	$(MAKE) -C src/rp2040 install
@@ -54,6 +55,9 @@ stm32f407:
 
 stm32f411:
 	$(MAKE) -C src/stm32f411
+
+stm32f401r:
+	$(MAKE) -C src/stm32f401r
 
 stm32l476:
 	$(MAKE) -C src/stm32l476
@@ -85,7 +89,7 @@ rp2350_1core:
 rp2350_1core_16mib:
 	$(MAKE) -C src/rp2350_1core_16mib
 
-.PHONY: all install stm32f407 stm32f411 stm32l746 stm32f746 rp2040 rp2040_big rp2040_1core rp2040_1core_big rp2350 rp2350_16mib rp2350_1core rp2350_1core_16mib clean html epub
+.PHONY: all install stm32f407 stm32f411 stm32f401r stm32l746 stm32f746 rp2040 rp2040_big rp2040_1core rp2040_1core_big rp2350 rp2350_16mib rp2350_1core rp2350_1core_16mib clean html epub
 
 html:
 	cd docs ; sphinx-build -b html . ../html
@@ -96,6 +100,7 @@ epub:
 clean:
 	$(MAKE) -C src/stm32f407 clean
 	$(MAKE) -C src/stm32f411 clean
+	$(MAKE) -C src/stm32f401r clean
 	$(MAKE) -C src/stm32l476 clean
 	$(MAKE) -C src/stm32f746 clean
 	$(MAKE) -C src/rp2040 clean
